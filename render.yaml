@@ -14,14 +14,15 @@ services:
         - backend/**/*
     rootDir: backend
 
-  - type: static
+  - type: web
     name: react-frontend
-    env: static
+    env: node
     plan: free
     buildCommand: "npm install && npm run build"
-    staticPublishPath: "build"
-    rootDir: frontend
+    startCommand: "npx serve -s build -l 10000"
+    envVars: []
+    autoDeploy: true
     buildFilter:
       paths:
         - frontend/**/*
-    autoDeploy: true
+    rootDir: frontend
