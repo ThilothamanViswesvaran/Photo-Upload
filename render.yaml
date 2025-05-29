@@ -13,3 +13,15 @@ services:
       paths:
         - backend/**/*
     rootDir: backend
+
+  - type: static
+    name: react-frontend
+    env: static
+    plan: free
+    buildCommand: "npm install && npm run build"
+    staticPublishPath: "build"
+    rootDir: frontend
+    buildFilter:
+      paths:
+        - frontend/**/*
+    autoDeploy: true
