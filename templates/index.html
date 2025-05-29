@@ -223,20 +223,12 @@
                         longitude: position.coords.longitude
                     };
                     
-                    // Fetch location details from backend
-                    fetch(`http://127.0.0.1:5000/get-location-details?lat=${userLocation.latitude}&lon=${userLocation.longitude}`)
-                        .then(response => response.json())
-                        .then(data => {
-                            locationAllowed = true;
-                            document.getElementById("locationStatus").innerText = 
-                                `Location: ${data.city}, ${data.district}, ${data.state}, ${data.country}`;
-                            document.getElementById("locationWarning").style.display = "none";
-                            document.getElementById("uploadButton").disabled = false;
-                        })
-                        .catch(error => {
-                            document.getElementById("locationStatus").innerText = 
-                                "Failed to retrieve location details";
-                        });
+                    // Simple display without API calls
+                    locationAllowed = true;
+                    document.getElementById("locationStatus").innerText = 
+                        `Location: Latitude ${userLocation.latitude.toFixed(4)}, Longitude ${userLocation.longitude.toFixed(4)}`;
+                    document.getElementById("locationWarning").style.display = "none";
+                    document.getElementById("uploadButton").disabled = false;
                 }, function(error) {
                     document.getElementById("locationStatus").innerText = 
                         "Location access denied";
@@ -426,6 +418,5 @@
             });
         }
     </script>
-
 </body>
 </html>
